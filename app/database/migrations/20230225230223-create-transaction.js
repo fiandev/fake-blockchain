@@ -1,0 +1,37 @@
+'use strict';
+/** @type {import('sequelize-cli').Migration} */
+module.exports = {
+  async up(queryInterface, Sequelize) {
+    await queryInterface.createTable('Transactions', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        unique: true,
+        type: Sequelize.BIGINT
+      },
+      seller_id: {
+        type: Sequelize.BIGINT
+      },
+      buyer_id: {
+        type: Sequelize.BIGINT
+      },
+      token_id: {
+        type: Sequelize.BIGINT
+      },
+      createdAt: {
+        allowNull: false,
+        defaultValue: new Date(),
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        defaultValue: new Date(),
+        type: Sequelize.DATE
+      }
+    });
+  },
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable('Transactions');
+  }
+};
